@@ -1,0 +1,135 @@
+options {
+  LOOKAHEAD = 1;
+  CHOICE_AMBIGUITY_CHECK = 2;
+  OTHER_AMBIGUITY_CHECK = 1;
+  STATIC = false;
+  DEBUG_PARSER = false;
+  DEBUG_LOOKAHEAD = false;
+  DEBUG_TOKEN_MANAGER = false;
+  ERROR_REPORTING = true;
+  JAVA_UNICODE_ESCAPE = false;
+  UNICODE_INPUT = false;
+  IGNORE_CASE = false;
+  USER_TOKEN_MANAGER = false;
+  USER_CHAR_STREAM = false;
+  BUILD_PARSER = true;
+  BUILD_TOKEN_MANAGER = true;
+  SANITY_CHECK = true;
+  FORCE_LA_CHECK = false;
+}
+
+
+PARSER_BEGIN(Exemplo)
+
+public class Exemplo {
+    public static void main(String args[]) throws ParseException {
+        Exemplo parser = new Exemplo(System.in);
+        System.out.print("\nEnter Expression: ");
+        System.out.flush();
+
+        parser.texto();
+        Tradutor.traduz();
+    }
+}
+PARSER_END(Exemplo)
+
+
+SKIP :
+{
+    "\r"
+|	"\t"
+}
+
+TOKEN :
+{
+    <A:".-">|
+    <B:"-...">|
+    <C:"-.-.">|
+    <D:"-..">|
+    <E:".">|
+    <F:"..-.">|
+    <G:"--.">|
+    <H:"....">|
+    <I:"..">|
+    <J:".---">|
+    <K:"-.-">|
+    <L:".-..">|
+    <M:"--">|
+    <N:"-.">|
+    <O:"---">|
+    <P:".--.">|
+    <Q:"--.-">|
+    <R:".-.">|
+    <S:"...">|
+    <T:"-">|
+    <U:"..-">|
+    <V:"...-">|
+    <W:".--">|
+    <X:"-..-">|
+    <Y:"-.--">|
+    <Z:"--..">|
+    <N1:".----">|
+    <N2:"..---">|
+    <N3:"...--">|
+    <N4:"....-">|
+    <N5:".....">|
+    <N6:"-....">|
+    <N7:"--...">|
+    <N8:"---..">|
+    <N9:"----.">|
+    <N0:"-----">|
+    <espaco: " ">|
+    <EOL: "\n">
+}
+
+void texto():
+{}
+{
+   ((<espaco><espaco><espaco>)?palavra()(<espaco><espaco><espaco>)?)+ <EOL>
+}
+void palavra():
+{}
+{
+    ((<espaco>)?caractere()(<espaco>)?)+
+}
+void caractere():
+{Token t;}
+{
+    t = <A> {Tradutor.re += "A";}
+    | t = <B> {Tradutor.re += "B";}
+    | t = <C> {Tradutor.re += "C";}
+    | t = <D> {Tradutor.re += "D";}
+    | t = <E> {Tradutor.re += "E";}
+    | t = <F> {Tradutor.re += "F";}
+    | t = <G> {Tradutor.re += "G";}
+    | t = <H> {Tradutor.re += "H";}
+    | t = <I> {Tradutor.re += "I";}
+    | t = <J> {Tradutor.re += "J";}
+    | t = <K> {Tradutor.re += "K";}
+    | t = <L> {Tradutor.re += "L";}
+    | t = <M> {Tradutor.re += "M";}
+    | t = <N> {Tradutor.re += "N";}
+    | t = <O> {Tradutor.re += "O";}
+    | t = <P> {Tradutor.re += "P";}
+    | t = <Q> {Tradutor.re += "Q";}
+    | t = <R> {Tradutor.re += "R";}
+    | t = <S> {Tradutor.re += "S";}
+    | t = <T> {Tradutor.re += "T";}
+    | t = <U> {Tradutor.re += "U";}
+    | t = <V> {Tradutor.re += "V";}
+    | t = <W> {Tradutor.re += "W";}
+    | t = <X> {Tradutor.re += "X";}
+    | t = <Y> {Tradutor.re += "Y";}
+    | t = <Z> {Tradutor.re += "Z";}
+    | t = <N1> {Tradutor.re += "1";}
+    | t = <N2> {Tradutor.re += "2";}
+    | t = <N3> {Tradutor.re += "3";}
+    | t = <N4> {Tradutor.re += "4";}
+    | t = <N5> {Tradutor.re += "5";}
+    | t = <N6> {Tradutor.re += "6";}
+    | t = <N7> {Tradutor.re += "7";}
+    | t = <N8> {Tradutor.re += "8";}
+    | t = <N9> {Tradutor.re += "9";}
+    | t = <N0> {Tradutor.re += "0";}
+    | " " {Tradutor.re += " ";}
+}
