@@ -1,6 +1,6 @@
 public class Tradutor {
-    static String re = "";
+    static String traducao = "";
     public static void traduz() {
-        System.out.print("Traducao: "+re+"\n");
+        System.out.print("Traducao: "+ traducao +"\n");
     }
 }
