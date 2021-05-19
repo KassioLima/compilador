@@ -22,13 +22,13 @@ options {
 PARSER_BEGIN(Exemplo)
 
 public class Exemplo {
+
+    static String traducao = "";
     public static void main(String args[]) throws ParseException {
         Exemplo parser = new Exemplo(System.in);
         System.out.print("\nEnter Expression: ");
         System.out.flush();
-
         parser.texto();
-        Tradutor.traduz();
     }
 }
 PARSER_END(Exemplo)
@@ -85,7 +85,7 @@ TOKEN :
 void texto():
 {}
 {
-   ((<espaco><espaco><espaco>)?palavra()(<espaco><espaco><espaco>)?)+ <EOL>
+   ((<espaco><espaco><espaco>)?palavra()(<espaco><espaco><espaco>)?)+ <EOL> {System.out.println("Traducao: " + traducao);}
 }
 void palavra():
 {}
@@ -93,43 +93,43 @@ void palavra():
     ((<espaco>)?caractere()(<espaco>)?)+
 }
 void caractere():
-{Token t;}
+{}
 {
-    t = <A> {Tradutor.traducao += "A";}
-    | t = <B> {Tradutor.traducao += "B";}
-    | t = <C> {Tradutor.traducao += "C";}
-    | t = <D> {Tradutor.traducao += "D";}
-    | t = <E> {Tradutor.traducao += "E";}
-    | t = <F> {Tradutor.traducao += "F";}
-    | t = <G> {Tradutor.traducao += "G";}
-    | t = <H> {Tradutor.traducao += "H";}
-    | t = <I> {Tradutor.traducao += "I";}
-    | t = <J> {Tradutor.traducao += "J";}
-    | t = <K> {Tradutor.traducao += "K";}
-    | t = <L> {Tradutor.traducao += "L";}
-    | t = <M> {Tradutor.traducao += "M";}
-    | t = <N> {Tradutor.traducao += "N";}
-    | t = <O> {Tradutor.traducao += "O";}
-    | t = <P> {Tradutor.traducao += "P";}
-    | t = <Q> {Tradutor.traducao += "Q";}
-    | t = <R> {Tradutor.traducao += "R";}
-    | t = <S> {Tradutor.traducao += "S";}
-    | t = <T> {Tradutor.traducao += "T";}
-    | t = <U> {Tradutor.traducao += "U";}
-    | t = <V> {Tradutor.traducao += "V";}
-    | t = <W> {Tradutor.traducao += "W";}
-    | t = <X> {Tradutor.traducao += "X";}
-    | t = <Y> {Tradutor.traducao += "Y";}
-    | t = <Z> {Tradutor.traducao += "Z";}
-    | t = <N1> {Tradutor.traducao += "1";}
-    | t = <N2> {Tradutor.traducao += "2";}
-    | t = <N3> {Tradutor.traducao += "3";}
-    | t = <N4> {Tradutor.traducao += "4";}
-    | t = <N5> {Tradutor.traducao += "5";}
-    | t = <N6> {Tradutor.traducao += "6";}
-    | t = <N7> {Tradutor.traducao += "7";}
-    | t = <N8> {Tradutor.traducao += "8";}
-    | t = <N9> {Tradutor.traducao += "9";}
-    | t = <N0> {Tradutor.traducao += "0";}
-    | " " {Tradutor.traducao += " ";}
+     <A> {traducao += "A";}
+    |<B> {traducao += "B";}
+    |<C> {traducao += "C";}
+    |<D> {traducao += "D";}
+    |<E> {traducao += "E";}
+    |<F> {traducao += "F";}
+    |<G> {traducao += "G";}
+    |<H> {traducao += "H";}
+    |<I> {traducao += "I";}
+    |<J> {traducao += "J";}
+    |<K> {traducao += "K";}
+    |<L> {traducao += "L";}
+    |<M> {traducao += "M";}
+    |<N> {traducao += "N";}
+    |<O> {traducao += "O";}
+    |<P> {traducao += "P";}
+    |<Q> {traducao += "Q";}
+    |<R> {traducao += "R";}
+    |<S> {traducao += "S";}
+    |<T> {traducao += "T";}
+    |<U> {traducao += "U";}
+    |<V> {traducao += "V";}
+    |<W> {traducao += "W";}
+    |<X> {traducao += "X";}
+    |<Y> {traducao += "Y";}
+    |<Z> {traducao += "Z";}
+    |<N1> {traducao += "1";}
+    |<N2> {traducao += "2";}
+    |<N3> {traducao += "3";}
+    |<N4> {traducao += "4";}
+    |<N5> {traducao += "5";}
+    |<N6> {traducao += "6";}
+    |<N7> {traducao += "7";}
+    |<N8> {traducao += "8";}
+    |<N9> {traducao += "9";}
+    |<N0> {traducao += "0";}
+    | " " {traducao += " ";}
 }
