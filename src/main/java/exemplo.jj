@@ -1,3 +1,4 @@
+//CÓDIGO ORIGINAL: https://javacc.github.io/javacc/tutorials/examples.html#javacc-example-3
 options {
   LOOKAHEAD = 1;
   CHOICE_AMBIGUITY_CHECK = 2;
@@ -22,24 +23,35 @@ options {
 PARSER_BEGIN(Exemplo)
 
 public class Exemplo {
+    //Aqui começam as alterações do código original
 
+    /**
+    * Criamos a variavel "traducao" como uma String vazia para que ela,
+    * ao decorrer da execução do código, armazene a tradução da entrada
+    */
     static String traducao = "";
     public static void main(String args[]) throws ParseException {
         Exemplo parser = new Exemplo(System.in);
         System.out.print("\nEnter Expression: ");
-        System.out.flush();
         parser.texto();
     }
 }
 PARSER_END(Exemplo)
 
-
+/**
+* No código original, a quebra de linha eo espaço são considerados elements ignoraveis.
+* Removemos o "\n" e o espaço em branco da lista de elementos ignoraveis "skip".
+*/
 SKIP :
 {
-    "\r"
-|	"\t"
+    "\r" | "\t"
 }
 
+/**
+* O exemplo foi construído para reconhecer apenas dois tokens: "{" e "}".
+* Alteramos para que reconheça os correspondentes em morse dos números de
+* 0 a 9 e letras de A a Z, bem como espaçamento e quebra de linha.
+*/
 TOKEN :
 {
     <A:".-">|
@@ -81,7 +93,9 @@ TOKEN :
     <espaco: " ">|
     <EOL: "\n">
 }
-
+/**
+* Alteramos a gramática para reconhecer caracteres e palavras, que compõem um texto
+*/
 void texto():
 {}
 {
@@ -131,5 +145,5 @@ void caractere():
     |<N8> {traducao += "8";}
     |<N9> {traducao += "9";}
     |<N0> {traducao += "0";}
-    | " " {traducao += " ";}
+    |<espaco> {traducao += " ";}
 }
